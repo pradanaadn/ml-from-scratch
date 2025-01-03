@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.12  # Ganti dengan versi Python yang sesuai
+        python-version: 3.12
 
     - name: Install uv
       run: |
@@ -29,5 +29,8 @@ jobs:
     - name: Install dependencies with uv
       run: uv sync
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+
     - name: Run tests
-      run: uv run pytest .
+      run: uv run pytest
